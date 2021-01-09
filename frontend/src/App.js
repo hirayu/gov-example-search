@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import apiClient from 'application/apis/api-client';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+  return <GovExampleSearch />
 }
 
+class GovExampleSearch extends Component
+{
+  constructor(props)
+  {
+    super(props);
+    this.state = {
+      query: ""
+    }
+  }
+
+  onSearch = () => {
+    this.setState({ query: ""})
+  }
+
+  render()
+  {
+    try {
+      let searchResult = []
+      apiClient.searchMockAct(this.state.query).then((res) => {
+        res.forEach(a => {
+          searchResult.push(a);
+        })
+      });
+    } catch (e) {
+      // handle error
+    }
+    return (
+      <div>
+        <div>
+          <input type="text" />
+        </div>
+      </div>
+    );
+  }
+}
 export default App;
