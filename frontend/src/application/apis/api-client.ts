@@ -3,7 +3,7 @@ import axios from "axios"
 import { Act, ActEntity } from "../domain/act/act";
 
 const mockBaseUrl = "http://localhost:3001/act";
-const baseUrl = "";
+const baseUrl = "http://localhost:8080/gov-example-search";
 
 class ApiClient {
 

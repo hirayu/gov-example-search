@@ -10,7 +10,6 @@ $ cd frontend
 $ yarn mock
 ```
 
-
 - start development server
 ```
 $ cd frontend
@@ -18,4 +17,11 @@ $ yarn start
 ```
 
 ### backend
-WIP
+- confirm installed
+      - python
+
+- start server
+```
+$ cd backend
+$ python server.py
+```
