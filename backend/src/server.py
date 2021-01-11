@@ -1,12 +1,16 @@
 import http.server as s
+from urllib.parse import urlparse, parse_qs
 import json
 
 class ServerHandler(s.BaseHTTPRequestHandler):
     def do_GET(self):
+        parsed_url = urlparse(self.path)
+        path = parsed_url.path
+        query = parse_qs(parsed_url.query)
         self.send_response(200)
         self.send_header("User-Agent","test1")
         self.end_headers()
-        html = "hello, world!"
+        html = 'parsed: path = {}, query = {}'.format(path, query)
         self.wfile.write(html.encode())
 
     def do_POST(self):

@@ -18,7 +18,7 @@ $ yarn start
 
 ### backend
 - confirm installed
-      - python
+      - python 3.8 (recommend to install it via pyenv)
 
 - start server
 ```
