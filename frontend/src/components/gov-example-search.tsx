@@ -20,11 +20,8 @@ import {
   Toolbar,
   Typography,
 } from "@material-ui/core";
-// import {
-//     DirectionsIcon,
-//     MenuIcon,
-//     SearchIcon,
-// } from "@material-ui/icons";
+import AddIcon from '@material-ui/icons/Add';
+import SearchIcon from "@material-ui/icons/Search";
 import { ActEntity } from "application/domain/act/act";
 
 type Props = {};
@@ -44,6 +41,7 @@ const GovExampleSearch: React.FC<Props> = () => {
       },
       search: {
         padding: "2px 4px",
+        marginTop: "20px",
         display: "flex",
         alignItems: "center",
         width: 400,
@@ -131,7 +129,7 @@ const GovExampleSearch: React.FC<Props> = () => {
             color="primary"
             onClick={menuOpen}
           >
-            {/* <DirectionsIcon /> */}
+            <AddIcon />
           </IconButton>
           <Menu
             id="fade-menu"
@@ -159,7 +157,7 @@ const GovExampleSearch: React.FC<Props> = () => {
             aria-label="search"
             onClick={handleClick}
           >
-            {/* <SearchIcon /> */}
+            <SearchIcon />
           </IconButton>
         </Paper>
 
