@@ -20,11 +20,18 @@ import {
   Toolbar,
   Typography,
 } from "@material-ui/core";
-import AddIcon from '@material-ui/icons/Add';
+import AddIcon from "@material-ui/icons/Add";
 import SearchIcon from "@material-ui/icons/Search";
 import { ActEntity } from "application/domain/act/act";
+import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
 type Props = {};
+
+const theme = createMuiTheme({
+  typography: {
+    fontFamily: ["Noto Serif JP", "serif"].join(","),
+  },
+});
 
 const GovExampleSearch: React.FC<Props> = () => {
   const useStyles = makeStyles((theme: Theme) =>
@@ -98,70 +105,71 @@ const GovExampleSearch: React.FC<Props> = () => {
 
   return (
     <>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-          ></IconButton>
-          <Typography variant="h5">かんたん法制執務</Typography>
-          <Typography variant="h6">　用例検索</Typography>
-        </Toolbar>
-      </AppBar>
-      <Container maxWidth="sm">
-        <Paper component="form" className={classes.search}>
-          <InputBase
-            className={classes.input}
-            placeholder="検索ワード"
-            value={query}
-            onChange={(e) => {
-              setQuery(e.target.value);
-            }}
-            id="outlined-search"
-            type="search"
-          />
-          <Divider className={classes.divider} orientation="vertical" />
-          <IconButton
-            aria-controls="fade-menu"
-            aria-haspopup="true"
-            className={classes.iconButton}
-            color="primary"
-            onClick={menuOpen}
-          >
-            <AddIcon />
-          </IconButton>
-          <Menu
-            id="fade-menu"
-            anchorEl={anchorEl}
-            keepMounted
-            open={open}
-            onClose={menuClose}
-            TransitionComponent={Fade}
-          >
-            <MenuItem onClick={addPartNoun}>名詞</MenuItem>
-            <MenuItem onClick={addPartVerb}>動詞</MenuItem>
-            <MenuItem onClick={addPartAdjective}>形容詞</MenuItem>
-            <MenuItem onClick={menuClose}>形容動詞</MenuItem>
-            <MenuItem onClick={menuClose}>連体詞</MenuItem>
-            <MenuItem onClick={menuClose}>助詞</MenuItem>
-            <MenuItem onClick={menuClose}>助動詞</MenuItem>
-            <MenuItem onClick={menuClose}>副詞</MenuItem>
-            <MenuItem onClick={menuClose}>接続詞</MenuItem>
-            <MenuItem onClick={menuClose}>接頭辞</MenuItem>
-            <MenuItem onClick={menuClose}>接尾辞</MenuItem>
-          </Menu>
-          <IconButton
-            type="submit"
-            className={classes.iconButton}
-            aria-label="search"
-            onClick={handleClick}
-          >
-            <SearchIcon />
-          </IconButton>
-        </Paper>
+      <ThemeProvider theme={theme}>
+        <AppBar position="static">
+          <Toolbar>
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+            ></IconButton>
+            <Typography variant="h5">かんたん法制執務</Typography>
+            <Typography variant="h6">　用例検索</Typography>
+          </Toolbar>
+        </AppBar>
+        <Container maxWidth="sm">
+          <Paper component="form" className={classes.search}>
+            <InputBase
+              className={classes.input}
+              placeholder="検索ワード"
+              value={query}
+              onChange={(e) => {
+                setQuery(e.target.value);
+              }}
+              id="outlined-search"
+              type="search"
+            />
+            <Divider className={classes.divider} orientation="vertical" />
+            <IconButton
+              aria-controls="fade-menu"
+              aria-haspopup="true"
+              className={classes.iconButton}
+              color="primary"
+              onClick={menuOpen}
+            >
+              <AddIcon />
+            </IconButton>
+            <Menu
+              id="fade-menu"
+              anchorEl={anchorEl}
+              keepMounted
+              open={open}
+              onClose={menuClose}
+              TransitionComponent={Fade}
+            >
+              <MenuItem onClick={addPartNoun}>名詞</MenuItem>
+              <MenuItem onClick={addPartVerb}>動詞</MenuItem>
+              <MenuItem onClick={addPartAdjective}>形容詞</MenuItem>
+              <MenuItem onClick={menuClose}>形容動詞</MenuItem>
+              <MenuItem onClick={menuClose}>連体詞</MenuItem>
+              <MenuItem onClick={menuClose}>助詞</MenuItem>
+              <MenuItem onClick={menuClose}>助動詞</MenuItem>
+              <MenuItem onClick={menuClose}>副詞</MenuItem>
+              <MenuItem onClick={menuClose}>接続詞</MenuItem>
+              <MenuItem onClick={menuClose}>接頭辞</MenuItem>
+              <MenuItem onClick={menuClose}>接尾辞</MenuItem>
+            </Menu>
+            <IconButton
+              type="submit"
+              className={classes.iconButton}
+              aria-label="search"
+              onClick={handleClick}
+            >
+              <SearchIcon />
+            </IconButton>
+          </Paper>
 
-        {/* <Grid container>
+          {/* <Grid container>
           <Grid item>
             <TextField
               id="outlined-search"
@@ -183,23 +191,24 @@ const GovExampleSearch: React.FC<Props> = () => {
             </Button>
           </Grid>
         </Grid> */}
-      </Container>
-      <Container maxWidth="sm">
-        <Box className={classes.root}>
-          {result &&
-            result.map((v) => {
-              return (
-                <Paper className={classes.paper}>
-                  <Grid container wrap="nowrap" spacing={2}>
-                    <Grid item xs zeroMinWidth>
-                      <Typography noWrap>{v.actName}</Typography>
+        </Container>
+        <Container maxWidth="sm">
+          <Box className={classes.root}>
+            {result &&
+              result.map((v) => {
+                return (
+                  <Paper className={classes.paper}>
+                    <Grid container wrap="nowrap" spacing={2}>
+                      <Grid item xs zeroMinWidth>
+                        <Typography noWrap>{v.actName}</Typography>
+                      </Grid>
                     </Grid>
-                  </Grid>
-                </Paper>
-              );
-            })}
-        </Box>
-      </Container>
+                  </Paper>
+                );
+              })}
+          </Box>
+        </Container>
+      </ThemeProvider>
     </>
   );
 };
